@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <title>301医院门诊管理系统 医疗卡管理</title>
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../h-ui/css/H-ui.min.css">
+  <link rel="stylesheet" href="../h-ui.admin/css/H-ui.admin.css">
+  <link rel="stylesheet" href="../Hui-iconfont/1.0.8/iconfont.css">
+  <link rel="stylesheet" href="../h-ui.admin/skin/default/skin.css" id="skin">
+  <link rel="stylesheet" href="../h-ui.admin/css/style.css">
+</head>
+<body>
+<nav class="breadcrumb">
+  <i class="Hui-iconfont">&#xe67f;</i> 首页
+  <span class="c-gray en">&gt;</span>医疗卡管理中心
+  <span class="c-gray en">&gt;</span>办卡充值
+  <a class="btn btn-success radius r"
+     style="line-height:1.6em;margin-top:3px"
+     href="javascript:location.replace(location.href);" title="刷新">
+    <i class="Hui-iconfont">&#xe68f;</i>
+  </a>
+</nav>
+
+<div class="page-container">
+  <div class="cl pd-5 bg-1 bk-gray mt-20">
+			<span class="l">
+        <a href="javascript:;"
+           onclick="member_add('添加诊疗卡','cardsedit.html','450','405')"
+           class="btn btn-primary radius">
+          <i class="Hui-iconfont">&#xe600;</i>办卡业务
+        </a>
+      </span>
+    <span class="r">共有诊疗卡:&nbsp;
+      <strong id="dataLength"></strong>&nbsp;张
+			</span>
+  </div>
+  <div class="mt-20">
+    <table class="table table-border table-bordered table-hover table-bg table-sort">
+      <thead>
+      <tr class="text-c">
+        <th width="80">诊疗卡号</th>
+        <th width="100">用户名</th>
+        <th width="40">性别</th>
+        <th width="110">手机</th>
+        <th width="200">身份证</th>
+        <th width="80">余额</th>
+        <th width="130">办卡时间</th>
+        <th width="70">状态</th>
+        <th width="100">操作</th>
+      </tr>
+      </thead>
+      <tfoot>
+      <tr class="text-c">
+        <th width="80">诊疗卡号</th>
+        <th width="100">用户名</th>
+        <th width="40">性别</th>
+        <th width="110">手机</th>
+        <th width="200">身份证</th>
+        <th width="80">余额</th>
+        <th width="130">办卡时间</th>
+        <th width="70">状态</th>
+        <th width="100">操作</th>
+      </tr>
+      </tfoot>
+      <tbody id="tbody">
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer class="footer mt-20">
+  <div class="container">
+    Copyright &copy;2017-2027 SONG.net All Rights Reserved.
+  </div>
+</footer>
+
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/jquery.dataTables.min.js"></script>
+<script src="../h-ui/js/H-ui.min.js"></script>
+<script src="../h-ui.admin/js/H-ui.admin.js"></script>
+<script src="../WdatePicker/WdatePicker.js"></script>
+<script src="../layer/2.4/layer.js"></script>
+<script src="../layer/laypage.js"></script>
+<script src="../js/hospital.js"></script>
+<script>
+	$(()=>{
+		$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8087/hosp/cards",
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				var tbody=``;
+				$.each(data,function (i,card) {
+                    tbody+=` <tr class="text-c">
+        <th width="80">${card.cid}</th>
+        <th width="100">${card.pname}</th>
+        <th width="40">${card.gender}</th>
+        <th width="110">${card.phone}</th>
+        <th width="200">${card.idcard}</th>
+        <th width="80">${card.ramaining}</th>
+        <th width="130">${card.newdate}</th>
+        <th width="70">${card.doexist}</th>
+        <th width="100">操作</th>
+      </tr>`
+                    $("#tbody").html(tbody);
+                })
+			}
+		})
+	})
+	
+	
+  /*用户-添加*/
+  function member_add(title, url, w, h) {
+    layer_show(title, url, w, h);
+  }
+</script>
+</body>
+</html>

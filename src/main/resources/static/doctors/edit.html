@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <title>301医院门诊管理系统 医生列表</title>
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../static/h-ui/css/H-ui.min.css">
+  <link rel="stylesheet" href="../static/h-ui.admin/css/H-ui.admin.css">
+  <link rel="stylesheet" href="../static/Hui-iconfont/1.0.8/iconfont.css">
+  <link rel="stylesheet" href="../static/h-ui.admin/skin/default/skin.css" id="skin">
+  <link rel="stylesheet" href="../static/h-ui.admin/css/style.css">
+</head>
+<body>
+
+<article class="page-container">
+  <form method="post" class="form form-horizontal" id="form-doctor-add">
+    <input type="hidden" id="doid" name="doid">
+    <input type="hidden" id="doexist" name="doexist">
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>医生名:</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <input type="text" class="input-text" id="doname" name="doname" style="width: 225px;" placeholder="医生名">
+      </div>
+    </div>
+    <div class="row cl" id="divusername">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>登录用户名:</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <input type="text" class="input-text" value="" id="aname" name="aname" style="width: 225px;"
+               placeholder="登录用户名">
+      </div>
+    </div>
+    <div class="row cl" id="divpassword">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>登录密码:</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <input type="password" class="input-text" value="" id="pwd" name="pwd" style="width: 225px;" placeholder="登录密码">
+      </div>
+    </div>
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>挂号费:</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <input type="number" min="0" step="1" class="input-text" placeholder="挂号费" id="bcost" name="bcost"
+               style="width: 225px;">
+      </div>
+    </div>
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>每小时可挂号人数(网上):</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <input type="number" min="0" step="1" class="input-text" placeholder="挂号人数(网上)" id="pcreg"
+               name="pcreg" style="width: 225px;">
+      </div>
+    </div>
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>每小时可挂号人数(现场):</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <input type="number" min="0" step="1" class="input-text" placeholder="挂号人数(现场)" id="xcreg"
+               name="xcreg" style="width: 225px;">
+      </div>
+    </div>
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>医生职位:</label>
+      <div class="formControls col-xs-8 col-sm-9"><span class="select-box" style="width: 225px;">
+				<select class="select" id="title" name="title" size="1" style="width: 215px;">
+					<option value="住院医师">住院医师</option>
+					<option value="主治医师">主治医师</option>
+					<option value="副主任医师">副主任医师</option>
+					<option value="主任医师">主任医师</option>
+				</select>
+				</span>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>科室:</label>
+      <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width: 225px;">
+				<select class="select" size="1" id="deid" name="deid" style="width: 215px;">
+
+				</select>
+				</span></div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>医生简介:</label>
+      <div class="formControls col-xs-8 col-sm-9">
+        <textarea cols="30" rows="2" id="info" name="info" placeholder="医生简介"></textarea>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-3">值班信息:<br> &nbsp;</label>
+      <div class="formControls col-xs-8 col-sm-9" style="width:260px;text-align: center;">
+        <dl class="permission-list">
+          <dt>
+            <label> 全选:&nbsp;
+              <input type="checkbox" value="" name="user-Character-0" id="user-Character-0">
+            </label> &nbsp;&nbsp;&nbsp;
+          </dt>
+          <dd>
+            <dl class="cl permission-list2">
+              <dt>
+                周一:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" id="monam" name="monam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" id="monpm" name="monpm"></label>
+                <br>
+                周二:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" name="tueam" id="tueam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" name="tuepm" id="tuepm"></label>
+                <br>
+                周三:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" name="wedam" id="wedam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" name="wedpm" id="wedpm"></label>
+                <br>
+                周四:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" name="thuam" id="thuam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" name="thupm" id="thupm"></label>
+                <br>
+                周五:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" name="friam" id="friam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" name="fripm" id="fripm"></label>
+                <br>
+                周六:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" name="satam" id="satam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" name="satpm" id="satpm"></label>
+                <br>
+                周日:
+                &nbsp;
+                &nbsp;
+                <label>上午:&nbsp;<input type="checkbox" value="1" name="sunam" id="sunam"></label>
+                &nbsp;
+                &nbsp;
+                <label>下午:&nbsp;<input type="checkbox" value="1" name="sumpm" id="sumpm"></label>
+                <br>
+              </dt>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row cl">
+      <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+      </div>
+    </div>
+  </form>
+</article>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../static/h-ui/js/H-ui.min.js"></script>
+<script src="../static/h-ui.admin/js/H-ui.admin.js"></script>
+<script src="../static/layer/2.4/layer.js"></script>
+
+<script src="../js/jquery.validation/jquery.validate.js"></script>
+<script src="../js/jquery.validation/validate-methods.js"></script>
+<script src="../js/jquery.validation/messages_zh.js"></script>
+<script src="../js/hospital.js"></script>
+
+<script>
+  
+</script>
+</body>
+</html>
